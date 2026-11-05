@@ -1,6 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Chat</title>
@@ -8,32 +11,168 @@
     <script type="module" src="https://pyscript.net"></script>
     <script type="py" src="chat_via_openrouter.py"></script>
 </head>
+
 <body id="pagina">
-    <main id="conteudo">
-        <div class="mensagem-inicial">
-            <h1>Como posso ajudar?</h1>
-        </div>
-        <section id="conversa" class="conversa">
+
+    <!-- BARRA LATERAL -->
+    <aside id="sidebar" class="sidebar">
+
+        <header class="sidebar-header">
+
+            <h2 class="logo">MeuChat</h2>
+
+            <button id="fechar-sidebar" class="botao-icone">
+                ☰
+            </button>
+
+        </header>
+
+        <nav class="menu-sidebar">
+
+            <button class="menu-item" id="nova-conversa">
+                <span>＋</span>
+                Nova conversa
+            </button>
+
+            <button class="menu-item" id="buscar-conversa">
+                <span>⌕</span>
+                Buscar conversas
+            </button>
+
+        </nav>
+
+        <!-- HISTÓRICO -->
+        <section class="historico">
+
+            <h3>Conversas recentes</h3>
+
+            <ul id="lista-conversas">
+
+                <li>
+                    <button class="conversa-item">
+                        Conversa 1
+                    </button>
+                </li>
+
+                <li>
+                    <button class="conversa-item">
+                        Conversa 2
+                    </button>
+                </li>
+
+                <li>
+                    <button class="conversa-item">
+                        Conversa 3
+                    </button>
+                </li>
+
+            </ul>
+
         </section>
+
+        <!-- PERFIL -->
+        <footer class="sidebar-footer">
+
+            <button id="perfil-usuario" class="perfil">
+                <span class="avatar">U</span>
+                <span>Meu usuário</span>
+            </button>
+
+        </footer>
+
+    </aside>
+
+
+    <!-- ÁREA PRINCIPAL -->
+    <main id="main-content" class="main-content">
+
+        <!-- CABEÇALHO -->
+        <header id="topbar" class="topbar">
+
+            <button id="abrir-sidebar" class="botao-icone">
+                ☰
+            </button>
+
+            <button id="modelo-selecionado" class="modelo">
+                Meu Chat
+                <span>⌄</span>
+            </button>
+
+        </header>
+
+
+        <!-- CONTEÚDO DA CONVERSA -->
+        <section id="area-chat" class="area-chat">
+
+            <!-- TELA INICIAL -->
+            <div id="tela-inicial" class="tela-inicial">
+
+                <h1>Como posso ajudar?</h1>
+
+            </div>
+
+            <!-- MENSAGENS -->
+            <div id="mensagens" class="mensagens">
+
+                <!--
+                Mensagens do usuário e do assistente
+                serão adicionadas aqui pelo JavaScript.
+                -->
+
+            </div>
+
+        </section>
+
+
+        <!-- ÁREA DE ENVIO -->
+        <footer id="footer-chat" class="footer-chat">
+
+            <form id="form-pergunta" class="form-pergunta">
+
+                <!-- ADICIONAR ARQUIVO -->
+                <button
+                    type="button"
+                    id="adicionar-arquivo"
+                    class="botao-icone"
+                    title="Adicionar arquivo">
+                    ＋
+                </button>
+
+                <!-- CAMPO DE TEXTO -->
+                <textarea
+                    id="campo-pergunta"
+                    class="campo-pergunta"
+                    placeholder="Pergunte alguma coisa"
+                    rows="1">
+                </textarea>
+
+                <!-- FERRAMENTAS -->
+                <button
+                    type="button"
+                    id="ferramentas"
+                    class="botao-icone"
+                    title="Ferramentas">
+                    ⚒
+                </button>
+
+                <!-- ENVIO -->
+                <button
+                    type="submit"
+                    id="enviar-pergunta"
+                    class="botao-enviar"
+                    title="Enviar mensagem">
+                    ↑
+                </button>
+
+            </form>
+
+            <p class="aviso">
+                As respostas podem conter erros. Verifique informações importantes.
+            </p>
+
+        </footer>
+
     </main>
-    <footer id="barra-inferior">
-        <form id="form-pergunta" class="form-pergunta">
-            <button type="button" id="botao-adicionar" class="botao">
-              +
-            </button>
-            <textarea
-                id="campo-pergunta"
-                class="campo-pergunta"
-                placeholder="Pergunte alguma coisa..."
-                rows="1">
-            </textarea>
-            <button type="submit" id="botao-enviar" class="botao">
-                ↑
-            </button>
-        </form>
-        <p class="aviso">
-            Este é um projeto de demonstração.
-        </p>
-    </footer>
+
 </body>
 </html>
