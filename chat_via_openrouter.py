@@ -4,6 +4,8 @@ from langchain_openrouter import ChatOpenRouter
 
 from dotenv import load_dotenv
 
+from pyscript import document
+
 load_dotenv()
 
 
@@ -15,17 +17,15 @@ llm = ChatOpenRouter(
     temperature=0.7,
 )
 
-controlador = True
+def Enviar_pergunnta(Event):
 
-while controlador == True:
-
-    pergunta = str(input("Qual sua pergunta?: "))
-
-    if pergunta == "":
-        break
+    campo = document.querySelector( '#campo-pergunta' )
+    
+    pergunta = campo.value
 
     response = llm.invoke(pergunta)
 
-    print(response.content)
+    div_resposta = document.querySelector("#mensagens")
+    div_resposta.innerText = response
 
 #python chat_via_openrouter.py

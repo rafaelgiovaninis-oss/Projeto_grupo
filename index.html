@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Chat</title>
-     <link rel="stylesheet" href="https://pyscript.net">
+    <link rel="stylesheet" href="https://pyscript.net">
     <script type="module" src="https://pyscript.net"></script>
-    <script type="py" src="chat_via_openrouter.py"></script>
+   
 </head>
 
 <body id="pagina">
@@ -160,7 +160,8 @@
                     type="submit"
                     id="enviar-pergunta"
                     class="botao-enviar"
-                    title="Enviar mensagem">
+                    title="Enviar mensagem"
+                    py-click="Enviar-pergunta">
                     ↑
                 </button>
 
@@ -173,6 +174,8 @@
         </footer>
 
     </main>
+
+     <script type="py" src="chat_via_openrouter.py"></script>
 
 </body>
 </html>
