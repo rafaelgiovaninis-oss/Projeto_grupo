@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Chat</title>
+     <link rel="stylesheet" href="https://pyscript.net">
+    <script type="module" src="https://pyscript.net"></script>
+    <script type="py" src="chat_via_openrouter.py"></script>
 </head>
 
 <body id="pagina">
@@ -61,60 +64,46 @@
 
         <footer id="footer-chat" class="footer-chat">
             <form id="form-pergunta" class="form-pergunta">
-                <button type="button" id="adicionar-arquivo" class="botao-icone" title="Adicionar ficheiro">＋</button>
-                <textarea id="campo-pergunta" class="campo-pergunta" placeholder="Pergunte alguma coisa" rows="1"></textarea>
-                <button type="button" id="ferramentas" class="botao-icone" title="Ferramentas">⚒</button>
-                <button type="submit" id="enviar-pergunta" class="botao-enviar" title="Enviar mensagem">↑</button>
+
+                <!-- ADICIONAR ARQUIVO -->
+                <button
+                    type="button"
+                    id="adicionar-arquivo"
+                    class="botao-icone"
+                    title="Adicionar arquivo">
+                    ＋
+                </button>
+
+                <!-- CAMPO DE TEXTO -->
+                <textarea
+                    id="campo-pergunta"
+                    class="campo-pergunta"
+                    placeholder="Pergunte alguma coisa"
+                    rows="1">
+                </textarea>
+
+                <!-- FERRAMENTAS -->
+                <button
+                    type="button"
+                    id="ferramentas"
+                    class="botao-icone"
+                    title="Ferramentas">
+                    ⚒
+                </button>
+
+                <!-- ENVIO -->
+                <button
+                    type="submit"
+                    id="enviar-pergunta"
+                    class="botao-enviar"
+                    title="Enviar mensagem">
+                    ↑
+                </button>
+
             </form>
             <p class="aviso">As respostas podem conter erros. Verifique informações importantes.</p>
         </footer>
     </main>
 
-    <!-- SCRIPT DE COMUNICAÇÃO COM O BACK-END -->
-    <script>
-        const formPergunta = document.getElementById('form-pergunta');
-        const campoPergunta = document.getElementById('campo-pergunta');
-        const mensagensElement = document.getElementById('mensagens');
-        const telaInicial = document.getElementById('tela-inicial');
-
-        function adicionarMensagem(texto, classe) {
-            if (telaInicial) telaInicial.style.display = 'none';
-
-            const div = document.createElement('div');
-            div.classList.add('mensagem', classe);
-            div.textContent = texto;
-            mensagensElement.appendChild(div);
-            
-            const areaChat = document.getElementById('area-chat');
-            areaChat.scrollTop = areaChat.scrollHeight;
-        }
-
-        formPergunta.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const pergunta = campoPergunta.value.trim();
-            if (!pergunta) return;
-
-            adicionarMensagem(pergunta, 'usuario');
-            campoPergunta.value = '';
-
-            try {
-                const response = await fetch('http://127.0.0.1:8000/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: pergunta })
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    adicionarMensagem(data.response, 'assistente');
-                } else {
-                    adicionarMensagem('Erro: Não foi possível obter resposta.', 'assistente');
-                }
-            } catch (error) {
-                adicionarMensagem('Erro de conexão com o servidor Python.', 'assistente');
-            }
-        });
-    </script>
 </body>
 </html>
