@@ -1,0 +1,376 @@
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #212121;
+    color: #ececec;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* =========================
+   BARRA LATERAL
+========================= */
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: #171717;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    z-index: 10;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.botao-icone {
+    background: transparent;
+    border: none;
+    color: #ececec;
+    font-size: 21px;
+    cursor: pointer;
+    padding: 9px;
+    border-radius: 10px;
+}
+
+.botao-icone:hover {
+    background-color: #303030;
+}
+
+/* =========================
+   MENU LATERAL
+========================= */
+
+.menu-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-item {
+    background: transparent;
+    color: #ececec;
+    border: none;
+    text-align: left;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: #303030;
+}
+
+.menu-item span {
+    margin-right: 10px;
+}
+
+/* =========================
+   HISTÓRICO
+========================= */
+
+.historico {
+    margin-top: 35px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.historico h3 {
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+}
+
+#lista-conversas {
+    list-style: none;
+}
+
+.conversa-item {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ddd;
+    text-align: left;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.conversa-item:hover {
+    background-color: #303030;
+}
+
+/* =========================
+   PERFIL
+========================= */
+
+.sidebar-footer {
+    border-top: 1px solid #333;
+    padding-top: 12px;
+}
+
+.perfil {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.perfil:hover {
+    background-color: #303030;
+}
+
+.avatar {
+    background-color: #555;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================
+   CONTEÚDO PRINCIPAL
+========================= */
+
+.main-content {
+    margin-left: 260px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.topbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    gap: 15px;
+}
+
+.modelo {
+    background: transparent;
+    border: none;
+    color: #ececec;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* =========================
+   ÁREA DO CHAT
+========================= */
+
+.area-chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tela-inicial {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tela-inicial h1 {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.mensagens {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* =========================
+   MENSAGENS
+========================= */
+
+.mensagem {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 15px;
+    border-radius: 15px;
+}
+
+.mensagem.usuario {
+    background-color: #303030;
+    margin-left: auto;
+    max-width: 75%;
+    width: fit-content;
+}
+
+.mensagem.assistente {
+    background: transparent;
+    max-width: 100%;
+}
+
+/* =========================
+   BARRA DE PERGUNTAS
+========================= */
+
+.footer-chat {
+    width: 100%;
+    padding: 15px 25px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #212121;
+}
+
+.form-pergunta {
+    width: 100%;
+    max-width: 800px;
+    min-height: 65px;
+    background-color: #303030;
+    border: 1px solid #444;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    gap: 8px;
+}
+
+/* Campo de texto */
+
+.campo-pergunta {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 15px;
+    resize: none;
+    padding: 10px 5px;
+    font-family: inherit;
+    max-height: 180px;
+}
+
+.campo-pergunta::placeholder {
+    color: #999;
+}
+
+/* Botão de envio */
+
+.botao-enviar {
+    background-color: #ececec;
+    color: #171717;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 23px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao-enviar:hover {
+    background-color: #ccc;
+}
+
+/* Aviso inferior */
+
+.aviso {
+    color: #888;
+    font-size: 11px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+/* =========================
+   ROLAGEM
+========================= */
+
+.area-chat::-webkit-scrollbar,
+.historico::-webkit-scrollbar {
+    width: 6px;
+}
+
+.area-chat::-webkit-scrollbar-thumb,
+.historico::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        width: 260px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.aberta {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .footer-chat {
+        padding: 10px;
+    }
+
+    .form-pergunta {
+        min-height: 55px;
+    }
+
+    .tela-inicial h1 {
+        font-size: 23px;
+    }
+
+    .mensagem.usuario {
+        max-width: 90%;
+    }
+}
