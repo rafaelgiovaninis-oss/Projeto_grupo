@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,172 +6,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Chat</title>
-     <link rel="stylesheet" href="https://pyscript.net">
-    <script type="module" src="https://pyscript.net"></script>
-    <script type="py" src="chat_via_openrouter.py"></script>
 </head>
 
 <body id="pagina">
 
     <!-- BARRA LATERAL -->
     <aside id="sidebar" class="sidebar">
-
         <header class="sidebar-header">
-
             <h2 class="logo">MeuChat</h2>
-
-            <button id="fechar-sidebar" class="botao-icone">
-                ☰
-            </button>
-
+            <button id="fechar-sidebar" class="botao-icone">☰</button>
         </header>
 
         <nav class="menu-sidebar">
-
             <button class="menu-item" id="nova-conversa">
-                <span>＋</span>
-                Nova conversa
+                <span>＋</span> Nova conversa
             </button>
-
             <button class="menu-item" id="buscar-conversa">
-                <span>⌕</span>
-                Buscar conversas
+                <span>⌕</span> Buscar conversas
             </button>
-
         </nav>
 
-        <!-- HISTÓRICO -->
         <section class="historico">
-
             <h3>Conversas recentes</h3>
-
             <ul id="lista-conversas">
-
-                <li>
-                    <button class="conversa-item">
-                        Conversa 1
-                    </button>
-                </li>
-
-                <li>
-                    <button class="conversa-item">
-                        Conversa 2
-                    </button>
-                </li>
-
-                <li>
-                    <button class="conversa-item">
-                        Conversa 3
-                    </button>
-                </li>
-
+                <li><button class="conversa-item">Conversa 1</button></li>
+                <li><button class="conversa-item">Conversa 2</button></li>
+                <li><button class="conversa-item">Conversa 3</button></li>
             </ul>
-
         </section>
 
-        <!-- PERFIL -->
         <footer class="sidebar-footer">
-
             <button id="perfil-usuario" class="perfil">
                 <span class="avatar">U</span>
                 <span>Meu usuário</span>
             </button>
-
         </footer>
-
     </aside>
-
 
     <!-- ÁREA PRINCIPAL -->
     <main id="main-content" class="main-content">
-
-        <!-- CABEÇALHO -->
         <header id="topbar" class="topbar">
-
-            <button id="abrir-sidebar" class="botao-icone">
-                ☰
-            </button>
-
+            <button id="abrir-sidebar" class="botao-icone">☰</button>
             <button id="modelo-selecionado" class="modelo">
-                Meu Chat
-                <span>⌄</span>
+                Meu Chat <span>⌄</span>
             </button>
-
         </header>
 
-
-        <!-- CONTEÚDO DA CONVERSA -->
         <section id="area-chat" class="area-chat">
-
-            <!-- TELA INICIAL -->
             <div id="tela-inicial" class="tela-inicial">
-
                 <h1>Como posso ajudar?</h1>
-
             </div>
-
-            <!-- MENSAGENS -->
-            <div id="mensagens" class="mensagens">
-
-                <!--
-                Mensagens do usuário e do assistente
-                serão adicionadas aqui pelo JavaScript.
-                -->
-
-            </div>
-
+            <div id="mensagens" class="mensagens"></div>
         </section>
 
-
-        <!-- ÁREA DE ENVIO -->
         <footer id="footer-chat" class="footer-chat">
-
             <form id="form-pergunta" class="form-pergunta">
-
-                <!-- ADICIONAR ARQUIVO -->
-                <button
-                    type="button"
-                    id="adicionar-arquivo"
-                    class="botao-icone"
-                    title="Adicionar arquivo">
-                    ＋
-                </button>
-
-                <!-- CAMPO DE TEXTO -->
-                <textarea
-                    id="campo-pergunta"
-                    class="campo-pergunta"
-                    placeholder="Pergunte alguma coisa"
-                    rows="1">
-                </textarea>
-
-                <!-- FERRAMENTAS -->
-                <button
-                    type="button"
-                    id="ferramentas"
-                    class="botao-icone"
-                    title="Ferramentas">
-                    ⚒
-                </button>
-
-                <!-- ENVIO -->
-                <button
-                    type="submit"
-                    id="enviar-pergunta"
-                    class="botao-enviar"
-                    title="Enviar mensagem">
-                    ↑
-                </button>
-
+                <button type="button" id="adicionar-arquivo" class="botao-icone" title="Adicionar ficheiro">＋</button>
+                <textarea id="campo-pergunta" class="campo-pergunta" placeholder="Pergunte alguma coisa" rows="1"></textarea>
+                <button type="button" id="ferramentas" class="botao-icone" title="Ferramentas">⚒</button>
+                <button type="submit" id="enviar-pergunta" class="botao-enviar" title="Enviar mensagem">↑</button>
             </form>
-
-            <p class="aviso">
-                As respostas podem conter erros. Verifique informações importantes.
-            </p>
-
+            <p class="aviso">As respostas podem conter erros. Verifique informações importantes.</p>
         </footer>
-
     </main>
 
+    <!-- SCRIPT DE COMUNICAÇÃO COM O BACK-END -->
+    <script>
+        const formPergunta = document.getElementById('form-pergunta');
+        const campoPergunta = document.getElementById('campo-pergunta');
+        const mensagensElement = document.getElementById('mensagens');
+        const telaInicial = document.getElementById('tela-inicial');
+
+        function adicionarMensagem(texto, classe) {
+            if (telaInicial) telaInicial.style.display = 'none';
+
+            const div = document.createElement('div');
+            div.classList.add('mensagem', classe);
+            div.textContent = texto;
+            mensagensElement.appendChild(div);
+            
+            const areaChat = document.getElementById('area-chat');
+            areaChat.scrollTop = areaChat.scrollHeight;
+        }
+
+        formPergunta.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const pergunta = campoPergunta.value.trim();
+            if (!pergunta) return;
+
+            adicionarMensagem(pergunta, 'usuario');
+            campoPergunta.value = '';
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: pergunta })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    adicionarMensagem(data.response, 'assistente');
+                } else {
+                    adicionarMensagem('Erro: Não foi possível obter resposta.', 'assistente');
+                }
+            } catch (error) {
+                adicionarMensagem('Erro de conexão com o servidor Python.', 'assistente');
+            }
+        });
+    </script>
 </body>
 </html>
