@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Meu Chat</title>
 </head>
-<body>
-    
+<body id="pagina">
+    <main id="conteudo">
+        <div class="mensagem-inicial">
+            <h1>Como posso ajudar?</h1>
+        </div>
+        <section id="conversa" class="conversa">
+        </section>
+    </main>
+    <footer id="barra-inferior">
+        <form id="form-pergunta" class="form-pergunta">
+            <button type="button" id="botao-adicionar" class="botao">
+              +
+            </button>
+            <textarea
+                id="campo-pergunta"
+                class="campo-pergunta"
+                placeholder="Pergunte alguma coisa..."
+                rows="1">
+            </textarea>
+            <button type="submit" id="botao-enviar" class="botao">
+                ↑
+            </button>
+        </form>
+        <p class="aviso">
+            Este é um projeto de demonstração.
+        </p>
+    </footer>
 </body>
 </html>
