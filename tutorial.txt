@@ -3,5 +3,6 @@ Windows: Execute no powershell
 Passo 1: python -m venv venv
 Passo 2: venv\Scripts\Activate.ps1
 Passo 3: pip install fastapi uvicorn openai python-dotenv
-Passo 4: Certifique-se de que o seu .env tem a chave correta
-Passo 5: Inicie o servidor pelo terminal usando: python app.py
+Passo 4: Certifique-se de que o seu .env tem a chave correta do OPENROUTER
+Passo 5: Verifique se o Python Interpreter(Use a versão venv, Pesquise com >Python: Select Interpreter)
+Passo 6: Inicie o servidor pelo terminal usando: python app.py
